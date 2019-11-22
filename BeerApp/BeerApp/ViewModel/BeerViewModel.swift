@@ -8,6 +8,17 @@
 
 import UIKit
 
-class BeerViewModel: NSObject {
+class BeerViewModel: BeerViewModelProtocol {
+    
+    var filter : String?
+    
+    required init(name: String?) {
+        filter = name
+    }
+    
+    func getBeers() -> Array<Beer> {
+        return Array()
+    }
+    
 
 }

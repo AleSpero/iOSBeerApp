@@ -8,6 +8,8 @@
 
 import UIKit
 
-class BeerViewModelProtocol: NSObject {
-
+protocol BeerViewModelProtocol: class {
+    init(name : String?) 
+    func getBeers() -> [Beer]
+    
 }

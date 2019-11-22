@@ -8,6 +8,6 @@
 
 import UIKit
 
-class BeerView: UICell {
+class BeerView: UITableViewCell {
 
 }
