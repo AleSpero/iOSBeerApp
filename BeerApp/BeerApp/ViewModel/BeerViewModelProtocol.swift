@@ -9,7 +9,7 @@
 import UIKit
 
 protocol BeerViewModelProtocol: class {
-    init(name : String?) 
-    func getBeers() -> [Beer]
+    init(responseCallback : (([Beer]) -> Void)?)
+    func getBeers(name : String?)
     
 }

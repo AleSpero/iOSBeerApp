@@ -8,23 +8,28 @@
 
 import UIKit
 
-class BeerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class BeerViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
         
-    var beers : Array<String> = Array()
+    var beers : [Beer] = Array() {
+        didSet{
+            self.tableView.reloadData()
+        }
+    }
+    
+    var beerViewModel : BeerViewModel? = nil
+    var searchController : UISearchController? = nil
+    
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //Esplosione
-        NetworkUtils.init().getBeers(beerName: nil, brewedBefore: nil, brewedAfter: nil, callback: {
-            beer in
-            
+        beerViewModel = BeerViewModel.init(responseCallback: { beers in
+            self.beers = beers
         })
-        
-        for i in 0...10 {
-            beers.append("Beer \(i)")
-        }
+    
+        setupSearchBar()
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -46,9 +51,31 @@ class BeerViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
         // Configure the cell...
-        cell.textLabel?.text = beers[indexPath.row]
-
+        cell.textLabel?.text = beers[indexPath.row].name
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "beerDetail", sender: self)
+    }
+    
+    func setupSearchBar(){
+        searchBar.placeholder = "Search Beers..."
+        searchBar.delegate = self
+    }
+    
+    func updateSearchResults(for searchController : UISearchController){
+        guard let text = searchController.searchBar.text else{ return }
+        
+        debugPrint(text)
+        
+        if !text.isEmpty {
+        beerViewModel?.getBeers(name: text)
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        beerViewModel?.getBeers(name: searchText.isEmpty ? "" : searchText)
     }
     
 

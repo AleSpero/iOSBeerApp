@@ -15,33 +15,31 @@ class NetworkUtils: NSObject {
         return "https://api.punkapi.com/v2/"
     }
     
-    func getBeers(beerName : String?, brewedBefore : String?, brewedAfter : String?, callback : ([Beer]) -> Void) {
+    func getBeers(beerName : String?, brewedBefore : String?, brewedAfter : String?, callback : (([Beer]) -> Void)?) {
         
         var responseBeers : [Beer] = []
         
         //TODO PARAMETERS
         AF.request("https://api.punkapi.com/v2/beers?",
-            parameters: nil
+                   parameters: beerName?.isEmpty ?? true ? nil : ["beer_name": beerName] 
         ).responseJSON { response in
         
             switch(response.result){
             case .success(let jsonResponse):
                 let jsonDecoder = JSONDecoder.init()
         
-                
                 debugPrint(jsonResponse)
                 let beers = jsonResponse as! NSArray
                 
                 for beer in beers{
                     do {
-                    responseBeers.append(try jsonDecoder.decode(Beer.self, from: (beer as! String).data(using: .utf8) ?? Data()))
+                        let serializedResponse = try JSONSerialization.data(withJSONObject: beer, options: [])
+                        responseBeers.append(try jsonDecoder.decode(Beer.self, from: serializedResponse))
                     }
                     catch(let e){
                     debugPrint(e)
                     }
-            
                 }
-                
                 break
                 
             case .failure(let error):
@@ -49,7 +47,7 @@ class NetworkUtils: NSObject {
                 break
             }
             
-            
+            callback?(responseBeers)
         }
         
     }

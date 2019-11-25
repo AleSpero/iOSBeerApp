@@ -11,13 +11,15 @@ import UIKit
 class BeerViewModel: BeerViewModelProtocol {
     
     var filter : String?
+    var callback : (([Beer]) -> Void)?
     
-    required init(name: String?) {
-        filter = name
+    required init(responseCallback : (([Beer]) -> Void)?) {
+        self.callback = responseCallback
+        getBeers(name: nil)
     }
     
-    func getBeers() -> Array<Beer> {
-        return Array()
+    func getBeers(name : String?) {
+        NetworkUtils.init().getBeers(beerName: name, brewedBefore: nil, brewedAfter: nil, callback: callback ?? nil)
     }
     
 
