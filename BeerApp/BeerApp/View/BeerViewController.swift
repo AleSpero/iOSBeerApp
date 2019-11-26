@@ -17,6 +17,7 @@ class BeerViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     var beerViewModel : BeerViewModel? = nil
+    var currentlySelectedBeer : Beer? = nil
     var searchController : UISearchController? = nil
     
     @IBOutlet weak var tableView: UITableView!
@@ -33,6 +34,7 @@ class BeerViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         tableView.dataSource = self
         tableView.delegate = self
+        
     }
     
     // MARK: - Navigation
@@ -41,6 +43,12 @@ class BeerViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if(segue.destination is BeerDetailViewController){
+            let detailViewController = segue.destination as! BeerDetailViewController
+            detailViewController.currentBeer = currentlySelectedBeer
+        }
+        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,6 +64,7 @@ class BeerViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        currentlySelectedBeer = beers[indexPath.item]
         performSegue(withIdentifier: "beerDetail", sender: self)
     }
     

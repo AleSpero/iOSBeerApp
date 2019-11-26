@@ -25,6 +25,7 @@
 		766934B52379F1710099850F /* BeerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766934B42379F1710099850F /* BeerViewController.swift */; };
 		766934B72379F6550099850F /* BeerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766934B62379F6550099850F /* BeerView.swift */; };
 		7681694E2382E04800AAD988 /* BeerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7681694D2382E04800AAD988 /* BeerTableViewController.swift */; };
+		769A0E43238D995300A25F0D /* BeerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769A0E42238D995300A25F0D /* BeerDetailViewController.swift */; };
 		F9DEBF1B5FDB050EF8DC85FB /* Pods_BeerApp_BeerAppUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 227459FE8F009D813EA02C11 /* Pods_BeerApp_BeerAppUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -89,6 +90,7 @@
 		766934B42379F1710099850F /* BeerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerViewController.swift; sourceTree = "<group>"; };
 		766934B62379F6550099850F /* BeerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerView.swift; sourceTree = "<group>"; };
 		7681694D2382E04800AAD988 /* BeerTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerTableViewController.swift; sourceTree = "<group>"; };
+		769A0E42238D995300A25F0D /* BeerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeerDetailViewController.swift; sourceTree = "<group>"; };
 		9FD9975E4E5DDBE81D1D0AF6 /* Pods-BeerAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeerAppTests.debug.xcconfig"; path = "Target Support Files/Pods-BeerAppTests/Pods-BeerAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -213,6 +215,7 @@
 				766934B42379F1710099850F /* BeerViewController.swift */,
 				766934B62379F6550099850F /* BeerView.swift */,
 				7681694D2382E04800AAD988 /* BeerTableViewController.swift */,
+				769A0E42238D995300A25F0D /* BeerDetailViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				764141DE2375A28600ACFAE4 /* AppDelegate.swift in Sources */,
 				766934B32379EEC90099850F /* NetworkUtils.swift in Sources */,
 				764141E02375A28600ACFAE4 /* SceneDelegate.swift in Sources */,
+				769A0E43238D995300A25F0D /* BeerDetailViewController.swift in Sources */,
 				766934AC2379EBFF0099850F /* BeerViewModelProtocol.swift in Sources */,
 				7681694E2382E04800AAD988 /* BeerTableViewController.swift in Sources */,
 				766934AA2379E9DF0099850F /* Beer.swift in Sources */,
